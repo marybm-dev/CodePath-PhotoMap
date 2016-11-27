@@ -15,6 +15,7 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
 
     let imagePicker = UIImagePickerController()
     var selectedImage: UIImage!
+    var imageToView: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +58,10 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
         if segue.identifier == "tagSegue" {
             let locationsVC = segue.destination as! LocationsViewController
             locationsVC.delegate = self
+            
+        } else if segue.identifier == "fullImageSegue" {
+            let imageDetailVC = segue.destination as! FullImageViewController
+            imageDetailVC.photo = imageToView
         }
     }
     
@@ -71,6 +76,7 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
         self.navigationController?.popToViewController(self, animated: true)
     }
     
+    // Mark: - MKMapViewDelegate
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseID = "myAnnotationView"
         
@@ -79,6 +85,7 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
             annotationView = MKPinAnnotationView(annotation: annotationView as! MKAnnotation?, reuseIdentifier: reuseID)
             annotationView!.canShowCallout = true
             annotationView!.leftCalloutAccessoryView = UIImageView(frame: CGRect(x:0, y:0, width: 50, height:50))
+            annotationView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
         }
         
         let imageView = annotationView?.leftCalloutAccessoryView as! UIImageView
@@ -86,4 +93,13 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
         
         return annotationView
     }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        let imageView = view.leftCalloutAccessoryView as! UIImageView
+        imageToView = imageView.image
+        
+        self.performSegue(withIdentifier: "fullImageSegue", sender: nil)
+    }
+    
+    
 }

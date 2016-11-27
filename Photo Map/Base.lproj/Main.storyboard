@@ -25,21 +25,25 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="r21-d2-gOE">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </mapView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" translatesAutoresizingMaskIntoConstraints="NO" id="I4s-Mj-EmI">
-                                <rect key="frame" x="165" y="612" width="45" height="45"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AUC-pe-FGZ">
+                                <rect key="frame" x="165" y="602" width="45" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="45" id="F0O-VI-F3k"/>
-                                    <constraint firstAttribute="height" constant="45" id="eCC-cM-b8N"/>
+                                    <constraint firstAttribute="width" constant="45" id="7an-b1-8cv"/>
+                                    <constraint firstAttribute="height" constant="45" id="mr9-Ws-Etb"/>
                                 </constraints>
-                            </imageView>
+                                <state key="normal" image="camera"/>
+                                <connections>
+                                    <action selector="didTapCameraButton:" destination="ghP-Ww-KKQ" eventType="touchUpInside" id="mfu-fk-SNa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="r21-d2-gOE" firstAttribute="top" secondItem="Lxe-6f-KEH" secondAttribute="top" id="0ug-h5-lxd"/>
                             <constraint firstItem="r21-d2-gOE" firstAttribute="leading" secondItem="Lxe-6f-KEH" secondAttribute="leading" id="B2g-fq-T7c"/>
                             <constraint firstAttribute="trailing" secondItem="r21-d2-gOE" secondAttribute="trailing" id="ENs-hy-JtQ"/>
-                            <constraint firstItem="I4s-Mj-EmI" firstAttribute="centerX" secondItem="r21-d2-gOE" secondAttribute="centerX" id="Hl3-QD-XQm"/>
-                            <constraint firstItem="ufw-e1-uLx" firstAttribute="top" secondItem="I4s-Mj-EmI" secondAttribute="bottom" constant="10" id="lTY-gy-JaL"/>
+                            <constraint firstItem="AUC-pe-FGZ" firstAttribute="centerX" secondItem="r21-d2-gOE" secondAttribute="centerX" id="HQi-Dw-E6J"/>
+                            <constraint firstItem="ufw-e1-uLx" firstAttribute="top" secondItem="AUC-pe-FGZ" secondAttribute="bottom" constant="20" id="uEi-rY-arm"/>
                             <constraint firstItem="ufw-e1-uLx" firstAttribute="top" secondItem="r21-d2-gOE" secondAttribute="bottom" id="y7f-t2-g63"/>
                         </constraints>
                     </view>

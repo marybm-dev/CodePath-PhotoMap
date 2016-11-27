@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, LocationsViewControllerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
 
@@ -46,6 +46,22 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             self.selectedImage = image
         }
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: {
+            self.performSegue(withIdentifier: "tagSegue", sender: nil)
+        })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "tagSegue" {
+            let locationsVC = segue.destination as! LocationsViewController
+            locationsVC.delegate = self
+        }
+    }
+    
+    // Mark: – LocationsViewControllerDelegate
+    func locationsPickedLocation(controller: LocationsViewController, latitude: NSNumber, longitude: NSNumber) {
+        
+        
+        self.navigationController?.popToViewController(self, animated: true)
     }
 }
